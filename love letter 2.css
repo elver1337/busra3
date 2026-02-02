@@ -28,6 +28,40 @@
   transform-origin: top;
   pointer-events: none;
 }
+/* --- Mobile friendly defaults --- */
+html {
+  /* Baz font: telefonda otomatik büyür */
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Sayfanın ana kapsayıcısı varsa (yoksa da sorun değil) */
+.container, main, .wrapper, .content {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Yazıları esnek büyüt (küçük ekranda büyük, büyük ekranda normal) */
+h1 { font-size: clamp(28px, 6vw, 44px); line-height: 1.15; }
+h2 { font-size: clamp(22px, 5vw, 34px); line-height: 1.2; }
+p, li, button, input, a {
+  font-size: clamp(16px, 4.2vw, 20px);
+  line-height: 1.55;
+}
+
+/* Çok dar ekranlarda ekstra büyüt + boşluk */
+@media (max-width: 420px) {
+  body { padding: 18px; }
+  html { font-size: 19px; }
+}
+
 
 .pocket {
   border-left: 140px solid #f5a3a2; /* Soft pinkish red for the pocket */
@@ -264,3 +298,4 @@ body {
   background-color: #d9534f;
   color: #fff;
 }
+
