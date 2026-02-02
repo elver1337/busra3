@@ -28,40 +28,6 @@
   transform-origin: top;
   pointer-events: none;
 }
-/* --- Mobile friendly defaults --- */
-html {
-  /* Baz font: telefonda otomatik büyür */
-  font-size: 18px;
-}
-
-body {
-  margin: 0;
-  padding: 16px;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-/* Sayfanın ana kapsayıcısı varsa (yoksa da sorun değil) */
-.container, main, .wrapper, .content {
-  max-width: 700px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-/* Yazıları esnek büyüt (küçük ekranda büyük, büyük ekranda normal) */
-h1 { font-size: clamp(28px, 6vw, 44px); line-height: 1.15; }
-h2 { font-size: clamp(22px, 5vw, 34px); line-height: 1.2; }
-p, li, button, input, a {
-  font-size: clamp(16px, 4.2vw, 20px);
-  line-height: 1.55;
-}
-
-/* Çok dar ekranlarda ekstra büyüt + boşluk */
-@media (max-width: 420px) {
-  body { padding: 18px; }
-  html { font-size: 19px; }
-}
-
 
 .pocket {
   border-left: 140px solid #f5a3a2; /* Soft pinkish red for the pocket */
@@ -264,6 +230,11 @@ p, li, button, input, a {
 }
 body {
   background-color: #f0e6f6; /* Soft lavender for a romantic, dreamy feel */
+  /* keep things centered on all screens */
+  margin: 0;
+  padding: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .envlope-wrapper {
@@ -299,3 +270,45 @@ body {
   color: #fff;
 }
 
+/* -----------------------------
+   Mobile sizing fixes
+   -----------------------------
+   The original design uses fixed pixel sizes (280x180). On some phones it can
+   look too small, so we scale the whole envelope and bump text/button sizes.
+*/
+@media (max-width: 480px) {
+  .envlope-wrapper {
+    height: 560px; /* give room for the scaled envelope + hearts */
+  }
+
+  #envelope {
+    top: 90px;
+    transform: scale(1.35);
+    transform-origin: top center;
+  }
+
+  /* Make the letter text easier to read */
+  .words.line1 {
+    font-size: 0.9rem;
+  }
+  .words.line2,
+  .words.line3,
+  .words.line4 {
+    font-size: 1.25rem;
+  }
+
+  .reset button {
+    font-size: 16px;
+    padding: 12px 14px;
+    min-width: 140px;
+  }
+}
+
+/* Small tablets / large phones */
+@media (min-width: 481px) and (max-width: 768px) {
+  #envelope {
+    top: 120px;
+    transform: scale(1.15);
+    transform-origin: top center;
+  }
+}
